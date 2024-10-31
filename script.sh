@@ -1,5 +1,6 @@
 echo Make sure to systemctl list-units --type=service --state=active
 echo Check for anything suspicious
+apt install git
 # Basic Essentials
 echo Password requirements
 sed -i.bak '/password.*pam_unix.so/s/$/ minlen=8/' /etc/pam.d/common-password
@@ -25,6 +26,13 @@ ufw deny 2049
 ufw deny 515
 ufw deny 111
 echo UFW Secured
+
+#Enable Account Lockout Policy
+cd /usr/share/pamconfigs
+wget https://raw.githubusercontent.com/ayulovesyou/Cybersecurity/refs/heads/main/faillock_notify
+wget https://raw.githubusercontent.com/ayulovesyou/Cybersecurity/refs/heads/main/faillock
+cd /
+pam-auth-update
 
 #More Advanced Shit
 sed -i.bak 's/net.ipv4.tcp_syncookies=1/net.ipv4.tcp_syncookies=0' /etc/sysctl.conf
