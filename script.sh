@@ -1,6 +1,7 @@
 echo Make sure to systemctl list-units --type=service --state=active
 echo Check for anything suspicious
 apt install git -y > /dev/null
+apt update firefox thunderbird -y
 # Basic Essentials
 echo Password requirements
 sed -i.bak '/password.*pam_unix.so/s/$/ minlen=8/' /etc/pam.d/common-password
@@ -13,8 +14,8 @@ sed -i.bak 's/PASS_WARN_DAY  7/PASS_WARN_DAY  14/' /etc/login.defs
 echo Changed password Age Requirements
 sed -i.bak 's/^PermitRootLogin yes/PermitRootLogin no/' /etc/ssh/sshd_config
 echo Disabled SSH Root Login
-locate '*.mp3'
-locate '*.mp4'
+locate '*.mp3' | xargs rm
+locate '*.mp4' | xargs rm
 echo Delete any mp3, mp4, jpeg files. Check readme first.
 echo Check all files located.
 echo Working on UFW
