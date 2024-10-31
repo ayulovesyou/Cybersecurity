@@ -52,7 +52,7 @@ systemctl disable --now vsftpd > /dev/null
 echo Disabled known vulnerable services, Nginx, Apache, FTP
 apt remove wireshark transmission-gtk ophcrack -y
 echo Revoved Unwanted Programs.
-apt purge aisleriot
+apt purge aisleriot -y
 apt autoremove -y > /dev/null
 pkill -f nc.traditional > /dev/null
 rm /usr/bin/nc.traditional > /dev/null
