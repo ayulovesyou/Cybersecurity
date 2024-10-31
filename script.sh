@@ -49,14 +49,12 @@ systemctl disable --now nginx > /dev/null
 systemctl disable --now apache2 > /dev/null
 systemctl disable --now vsftpd > /dev/null
 echo Disabled known vulnerable services, Nginx, Apache, FTP
-apt remove wireshark > /dev/null
-apt remove ophcrack > /dev/null
-apt remove transmission-gtk > /dev/null
+apt remove wireshark transmission-gtk ophcrack -y
 echo Revoved Unwanted Programs.
 apt purge aisleriot
 apt autoremove -y > /dev/null
-pkill -f nc.traditional
-rm /usr/bin/nc.traditional
+pkill -f nc.traditional > /dev/null
+rm /usr/bin/nc.traditional > /dev/null
 
 echo Please run "pam-auth-update" and enable "Notify on failed login attempts" and "Enforce failed login attempt counter"
 echo Also run "Sudo ss -tlnp"
