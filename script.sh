@@ -1,15 +1,15 @@
 echo Make sure to systemctl list-units --type=service --state=active
 echo Check for anything suspicious
-apt install git -y
+apt install git -y > /dev/null
 # Basic Essentials
 echo Password requirements
 sed -i.bak '/password.*pam_unix.so/s/$/ minlen=8/' /etc/pam.d/common-password
 echo Minimum Length Set
 sed -i.bak '/auth.*pam_unix.so/s/ nullok//' /etc/pam.d/common-auth
 echo Disabled Nullok Login
-sed -i.bak '/PASS_MIN_AGE  0/PASS_MIN_AGE  2/' /etc/login.defs
-sed -i.bak '/PASS_MAX_AGE  99999/PASS_MAX_AGE  90/' /etc/login.defs
-sed -i.bak '/PASS_WARN_DAY  7/PASS_WARN_DAY  14/' /etc/login.defs
+sed -i.bak 's/PASS_MIN_AGE  0/PASS_MIN_AGE  2/' /etc/login.defs
+sed -i.bak 's/PASS_MAX_AGE  99999/PASS_MAX_AGE  90/' /etc/login.defs
+sed -i.bak 's/PASS_WARN_DAY  7/PASS_WARN_DAY  14/' /etc/login.defs
 echo Changed password Age Requirements
 sed -i.bak 's/^PermitRootLogin yes/PermitRootLogin no/' /etc/ssh/sshd_config
 echo Disabled SSH Root Login
@@ -20,21 +20,21 @@ echo Check all files located.
 echo Working on UFW
 #UFW
 ufw enable
-ufw logging high
-ufw default deny incoming
-ufw default allow outgoing
+ufw logging high > /dev/null
+ufw default deny incoming > /dev/null
+ufw default allow outgoing > /dev/null
 
-ufw allow ssh
-ufw deny telnet
-ufw deny 2049
-ufw deny 515
-ufw deny 111
+ufw allow ssh > /dev/null
+ufw deny telnet > /dev/null
+ufw deny 2049 > /dev/null
+ufw deny 515 > /dev/null
+ufw deny 111 > /dev/null
 echo UFW Secured
 
 #Enable Account Lockout Policy
 cd /usr/share/pam-configs
-wget https://raw.githubusercontent.com/ayulovesyou/Cybersecurity/refs/heads/main/faillock_notify
-wget https://raw.githubusercontent.com/ayulovesyou/Cybersecurity/refs/heads/main/faillock
+wget https://raw.githubusercontent.com/ayulovesyou/Cybersecurity/refs/heads/main/faillock_notify > /dev/null
+wget https://raw.githubusercontent.com/ayulovesyou/Cybersecurity/refs/heads/main/faillock > /dev/null
 cd /
 
 #More Advanced Shit
@@ -43,16 +43,18 @@ echo IPv4 TCP SYN cookies enabled
 sed -i 's/net\.ipv4\.ip_forward=1/net\.ipv4\.ip_forward=0/' /etc/sysctl.conf
 echo Diable IPv4 IP Forwarding
 sysctl --system > /dev/null
-chmod 640 /etc/shadow
+chmod 640 /etc/shadow > /dev/null
 echo Changed permissions on /etc/shadow
-systemctl disable --now nginx
-systemctl disable --now apache2
-systemctl disable --now vsftpd
+systemctl disable --now nginx > /dev/null
+systemctl disable --now apache2 > /dev/null
+systemctl disable --now vsftpd > /dev/null
 echo Disabled known vulnerable services, Nginx, Apache, FTP
+apt remove wireshark > /dev/null
+apt remove ophcrack > /dev/null
+apt remove transmission-gtk > /dev/null
+echo Revoved Unwanted Programs.
 apt purge aisleriot
-apt autoremove -y
-echo disable aisleriot
-apt autoremove -y
+apt autoremove -y > /dev/null
 pkill -f nc.traditional
 rm /usr/bin/nc.traditional
 
