@@ -7,9 +7,9 @@ sed -i.bak '/password.*pam_unix.so/s/$/ minlen=8/' /etc/pam.d/common-password
 echo Minimum Length Set
 sed -i.bak '/auth.*pam_unix.so/s/ nullok//' /etc/pam.d/common-auth
 echo Disabled Nullok Login
-sed -i.bak '/PASS_MIN_AGE 0/PASS_MIN_AGE 2/' /etc/login.defs
-sed -i.bak '/PASS_MAX_AGE 99999/PASS_MAX_AGE 90/' /etc/login.defs
-sed -i.bak '/PASS_WARN_DAY 7/PASS_WARN_DAY 14/' /etc/login.defs
+sed -i.bak '/PASS_MIN_AGE  0/PASS_MIN_AGE  2/' /etc/login.defs
+sed -i.bak '/PASS_MAX_AGE  99999/PASS_MAX_AGE  90/' /etc/login.defs
+sed -i.bak '/PASS_WARN_DAY  7/PASS_WARN_DAY  14/' /etc/login.defs
 echo Changed password Age Requirements
 sed -i.bak 's/^PermitRootLogin yes/PermitRootLogin no/' /etc/ssh/sshd_config
 echo Disabled SSH Root Login
@@ -38,10 +38,11 @@ wget https://raw.githubusercontent.com/ayulovesyou/Cybersecurity/refs/heads/main
 cd /
 
 #More Advanced Shit
-sed -i.bak 's/net.ipv4.tcp_syncookies=1/net.ipv4.tcp_syncookies=0/' /etc/sysctl.conf
+sed -i 's/net\.ipv4\.tcp_syncookies=1/net\.ipv4\.tcp_syncookies=0/' /etc/sysctl.conf
 echo IPv4 TCP SYN cookies enabled
-sed -i.bak 's/net.ipv4.ip_forward=1/net.ipv4.ip_forward=0/' /etc/sysctl.conf
+sed -i 's/net\.ipv4\.ip_forward=1/net\.ipv4\.ip_forward=0/' /etc/sysctl.conf
 echo Diable IPv4 IP Forwarding
+sysctl --system
 chmod 640 /etc/shadow
 echo Changed permissions on /etc/shadow
 systemctl disable --now nginx
