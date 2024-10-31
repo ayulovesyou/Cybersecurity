@@ -38,9 +38,9 @@ wget https://raw.githubusercontent.com/ayulovesyou/Cybersecurity/refs/heads/main
 cd /
 
 #More Advanced Shit
-sed -i.bak 's/net.ipv4.tcp_syncookies=1/net.ipv4.tcp_syncookies=0' /etc/sysctl.conf
+sed -i.bak 's/net.ipv4.tcp_syncookies=1/net.ipv4.tcp_syncookies=0/' /etc/sysctl.conf
 echo IPv4 TCP SYN cookies enabled
-sed -i.bak 's/net.ipv4.ip_forward=1/net.ipv4.ip_forward=0'/etc/sysctl.conf
+sed -i.bak 's/net.ipv4.ip_forward=1/net.ipv4.ip_forward=0/' /etc/sysctl.conf
 echo Diable IPv4 IP Forwarding
 chmod 640 /etc/shadow
 echo Changed permissions on /etc/shadow
@@ -51,7 +51,7 @@ echo Disabled known vulnerable services, Nginx, Apache, FTP
 apt purge aisleriot
 apt autoremove -y
 echo disable aisleriot
-apt autoremove
+apt autoremove -y
 pkill -f nc.traditional
 rm /usr/bin/nc.traditional
 
