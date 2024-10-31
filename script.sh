@@ -32,7 +32,6 @@ cd /usr/share/pamconfigs
 wget https://raw.githubusercontent.com/ayulovesyou/Cybersecurity/refs/heads/main/faillock_notify
 wget https://raw.githubusercontent.com/ayulovesyou/Cybersecurity/refs/heads/main/faillock
 cd /
-pam-auth-update
 
 #More Advanced Shit
 sed -i.bak 's/net.ipv4.tcp_syncookies=1/net.ipv4.tcp_syncookies=0' /etc/sysctl.conf
@@ -48,3 +47,9 @@ echo Disabled known vulnerable services, Nginx, Apache, FTP
 apt purge aisleriot
 apt autoremove -y
 echo disable aisleriot
+
+
+echo Please run 'pam-auth-update' and enable "Notify on failed login attempts" and "Enforce failed login attempt counter"
+echo Make sure to systemctl list-units --type=service --state=active
+echo Check for anything suspicious
+echo Delete any mp3, mp4, jpeg files. Check readme first.
