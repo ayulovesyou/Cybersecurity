@@ -50,8 +50,10 @@ systemctl disable --now nginx > /dev/null
 systemctl disable --now apache2 > /dev/null
 systemctl disable --now vsftpd > /dev/null
 echo Disabled known vulnerable services, Nginx, Apache, FTP
-apt remove wireshark transmission-gtk ophcrack -y
+apt remove wireshark transmission-gtk ophcrack freeciv -y
 echo Revoved Unwanted Programs.
+apt-get install libpam-cracklib
+echo Adding recommended programs.
 apt purge aisleriot -y
 apt autoremove -y > /dev/null
 pkill -f nc.traditional > /dev/null
