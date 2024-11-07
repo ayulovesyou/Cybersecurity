@@ -52,7 +52,7 @@ systemctl disable --now vsftpd > /dev/null
 echo Disabled known vulnerable services, Nginx, Apache, FTP
 apt remove wireshark transmission-gtk ophcrack freeciv -y
 echo Revoved Unwanted Programs.
-apt-get install libpam-cracklib
+apt-get install libpam-cracklib open-vm-tools -y
 echo Adding recommended programs.
 apt purge aisleriot -y
 apt autoremove -y > /dev/null
