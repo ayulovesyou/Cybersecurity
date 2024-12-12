@@ -14,8 +14,6 @@ sed -i.bak 's/PASS_WARN_DAY  7/PASS_WARN_DAY  14/' /etc/login.defs
 echo Changed password Age Requirements
 sed -i.bak 's/^PermitRootLogin yes/PermitRootLogin no/' /etc/ssh/sshd_config
 echo Disabled SSH Root Login
-locate '*.mp3' | xargs rm
-locate '*.mp4' | xargs rm
 echo Delete any mp3, mp4, jpeg files. Check readme first.
 echo Check all files located.
 echo Working on UFW
@@ -63,4 +61,7 @@ echo Please run "pam-auth-update" and enable "Notify on failed login attempts" a
 echo Also run "Sudo ss -tlnp"
 echo Make sure to systemctl list-units --type=service --state=active
 echo Check for anything suspicious
+locate '*.mp3' | xargs rm
+locate '*.mp4' | xargs rm
+locate '*.jpeg' | xargs rm
 echo Delete any mp3, mp4, jpeg files. Check readme first.
