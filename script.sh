@@ -42,7 +42,7 @@ cd /
 sed -i 's/net\.ipv4\.tcp_syncookies=1/net\.ipv4\.tcp_syncookies=0/' /etc/sysctl.conf
 echo IPv4 TCP SYN cookies enabled
 sed -i 's/net\.ipv4\.ip_forward=1/net\.ipv4\.ip_forward=0/' /etc/sysctl.conf
-echo Diable IPv4 IP Forwarding
+echo Disabled IPv4 IP Forwarding
 sysctl --system > /dev/null
 chmod 640 /etc/shadow > /dev/null
 echo Changed permissions on /etc/shadow
