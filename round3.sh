@@ -49,7 +49,14 @@ systemctl disable --now apache2 > /dev/null
 systemctl disable --now vsftpd > /dev/null
 systemctl disable --now ssh > /dev/null
 echo Disabled known vulnerable services, Nginx, Apache, FTP
-apt remove wireshark transmission-gtk ophcrack freeciv aircrack-ng samba samba-common samba-common-bin samba4-y
+apt remove wireshark transmission-gtk ophcrack freeciv aircrack-ng samba samba-common samba-common-bin samba4 -y
+apt remove telnet telnetd inetutils-telnetd telnetd-ssl bind9 -y
+apt purge netcat netcat-openbsd netcat-traditional ncat pnetcat socat sock socket sbd -y
+apt purge hydra hydra-gtk aircrack-ng fcrackzip lcrack ophcrack ophcrack-cli pdfcrack pyrit john john-data -y
+apt purge rarcrack sipcrack irpas logkeys zeitgeist-core zeitgeist-datahub python-zeitgeist rhythmbox-plugin-zeitgeist zeitgeist -y
+apt purge nfs-kernel-server nfs-common portmap rpcbind autofs nginx nginx-common -y
+apt purge inetd openbsd-inted xinetd inetutils-ftp inetutils-ftpd inetutils-inetd inetutils-ping inetutils-syslogd inetutils-talk inetutils-talkd inetutils-telnet inetutils-telnetd inetutils-tools inetutils-traceroute -y
+apt purge vnc4server nvcsnapshot vtgrab snmp -y
 echo Revoved Unwanted Programs.
 apt purge aisleriot -y
 apt autoremove -y > /dev/null
