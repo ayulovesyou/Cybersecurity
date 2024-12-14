@@ -49,7 +49,7 @@ systemctl disable --now apache2 > /dev/null
 systemctl disable --now vsftpd > /dev/null
 systemctl disable --now ssh > /dev/null
 echo Disabled known vulnerable services, Nginx, Apache, FTP
-apt remove wireshark transmission-gtk ophcrack freeciv -y
+apt remove wireshark transmission-gtk ophcrack freeciv aircrack-ng -y
 echo Revoved Unwanted Programs.
 apt purge aisleriot -y
 apt autoremove -y > /dev/null
@@ -65,3 +65,5 @@ locate '*.mp4' | xargs rm
 locate '*.jpeg' | xargs rm
 echo Delete any mp3, mp4, jpeg files. Check readme first.
 echo Select new passwords for any insecure passwords.
+echo Update Google Chrome, enable Security Options to Max. Go to settings, turn on automatic updates. 
+echo Remove Guest user, run "Sudo nano /etc/lightdm/lightdm.conf" and change allow-guest to false.
