@@ -1,6 +1,7 @@
 echo Make sure to systemctl list-units --type=service --state=active
 echo Check for anything suspicious
-apt install git net-tools  -y > /dev/null
+apt install git net-tools libpam-cracklib open-vm-tools -y
+
 # Basic Essentials
 echo Password requirements
 sed -i.bak '/password.*pam_unix.so/s/$/ minlen=8/' /etc/pam.d/common-password
@@ -15,13 +16,13 @@ sed -i.bak 's/^PermitRootLogin yes/PermitRootLogin no/' /etc/ssh/sshd_config
 echo Disabled SSH Root Login
 echo Delete any mp3, mp4, jpeg files. Check readme first.
 echo Check all files located.
-echo Working on UFW
+
 #UFW
+echo Working on UFW
 ufw enable
 ufw logging high > /dev/null
 ufw default deny incoming > /dev/null
 ufw default allow outgoing > /dev/null
-
 ufw allow ssh > /dev/null
 ufw deny telnet > /dev/null
 ufw deny 2049 > /dev/null
@@ -46,11 +47,10 @@ echo Changed permissions on /etc/shadow
 systemctl disable --now nginx > /dev/null
 systemctl disable --now apache2 > /dev/null
 systemctl disable --now vsftpd > /dev/null
+systemctl disable --now ssh > /dev/null
 echo Disabled known vulnerable services, Nginx, Apache, FTP
 apt remove wireshark transmission-gtk ophcrack freeciv -y
 echo Revoved Unwanted Programs.
-apt-get install libpam-cracklib open-vm-tools -y
-echo Adding recommended programs.
 apt purge aisleriot -y
 apt autoremove -y > /dev/null
 pkill -f nc.traditional > /dev/null
