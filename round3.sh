@@ -64,3 +64,4 @@ locate '*.mp3' | xargs rm
 locate '*.mp4' | xargs rm
 locate '*.jpeg' | xargs rm
 echo Delete any mp3, mp4, jpeg files. Check readme first.
+echo Select new passwords for any insecure passwords.
