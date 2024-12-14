@@ -49,7 +49,7 @@ systemctl disable --now apache2 > /dev/null
 systemctl disable --now vsftpd > /dev/null
 systemctl disable --now ssh > /dev/null
 echo Disabled known vulnerable services, Nginx, Apache, FTP
-apt remove wireshark transmission-gtk ophcrack freeciv aircrack-ng -y
+apt remove wireshark transmission-gtk ophcrack freeciv aircrack-ng samba samba-common samba-common-bin samba4-y
 echo Revoved Unwanted Programs.
 apt purge aisleriot -y
 apt autoremove -y > /dev/null
