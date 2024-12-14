@@ -1,6 +1,9 @@
 echo Make sure to systemctl list-units --type=service --state=active
 echo Check for anything suspicious
 apt install git net-tools libpam-cracklib open-vm-tools -y
+mkdir -p ~/Desktop/backups
+chmod 777 ~/Desktop/backups
+
 
 # Basic Essentials
 echo Password requirements
@@ -57,11 +60,16 @@ apt purge rarcrack sipcrack irpas logkeys zeitgeist-core zeitgeist-datahub pytho
 apt purge nfs-kernel-server nfs-common portmap rpcbind autofs nginx nginx-common -y
 apt purge inetd openbsd-inted xinetd inetutils-ftp inetutils-ftpd inetutils-inetd inetutils-ping inetutils-syslogd inetutils-talk inetutils-talkd inetutils-telnet inetutils-telnetd inetutils-tools inetutils-traceroute -y
 apt purge vnc4server nvcsnapshot vtgrab snmp -y
-echo Revoved Unwanted Programs.
+echo Revoved Unwanted Programs. & Removed backdoors
 apt purge aisleriot -y
 apt autoremove -y > /dev/null
 pkill -f nc.traditional > /dev/null
 rm /usr/bin/nc.traditional > /dev/null
+
+#More scripting shit
+crontab -l > ~/Desktop/backups/crontab-old
+crontab -r
+echo "Crontab backed up and startup tasks disabled."
 
 echo Please run "pam-auth-update" and enable "Notify on failed login attempts" and "Enforce failed login attempt counter"
 echo Also run "Sudo ss -tlnp"
